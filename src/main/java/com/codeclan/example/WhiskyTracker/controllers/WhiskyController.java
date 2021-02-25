@@ -22,21 +22,13 @@ public class WhiskyController {
     public ResponseEntity getAllWhiskiesAndFilters(
             @RequestParam(required = false, name = "year") Integer year,
             @RequestParam(required = false, name = "distilleryName") String distName,
-            @RequestParam(required = false, name = "age") Integer age,
-            @RequestParam(required = false, name = "distilleryRegion") String distRegion
+            @RequestParam(required = false, name = "age") Integer age
     ){
 
-        // if we have the year string then do the year query
         if (year != null){
             return new ResponseEntity(whiskyRepository.findByYear(year), HttpStatus.OK);
         }
 
-        // if we have the distilleryRegion string do the region query
-//        if (distRegion != null){
-//            return new ResponseEntity(whiskyRepository.findByRegion(distRegion), HttpStatus.OK);
-//        }
-
-        // default: we have none of the query strings GET /whiskies
         return new ResponseEntity(whiskyRepository.findAll(), HttpStatus.OK);
     }
 

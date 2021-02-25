@@ -23,15 +23,12 @@ public class DistilleryController {
     public ResponseEntity getAllDistilleriesAndFilters(
             @RequestParam(required = false, name = "region") String region,
             @RequestParam(required = false, name = "age") Integer age
-
     ){
-        // GET  /distilleries?region=Speyside
+
         if (region != null){
             return new ResponseEntity(distilleryRepository.findByRegion(region), HttpStatus.OK);
         }
-        // GET /distilleries?age=12
 
-        // GET /distilleries
         return new ResponseEntity(distilleryRepository.findAll(), HttpStatus.OK);
 
     }
